@@ -1,57 +1,46 @@
   <!-- Navbar -->
   @includeIf('layouts.header')
-  <!-- /.navbar -->
+  <title>Soal Grup Soal Edit</title>
 
   <!-- Main Sidebar Container -->
   @includeIf('layouts.sidebar')
-  <title>Soal</title>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Soal</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/home">Soal</a></li>
-              <li class="breadcrumb-item active">Soal</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-
-        <!-- /.row -->
-        <!-- Main row -->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-        Tambah Data
-        </button>
-        <br><br>
-
-        <center>
+    <a href="/grup_soal" class="btn btn-primary" style="margin-left: 10px;"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+    <a href="/grup_soal" class="btn btn-success" style="margin-left: 10px;"> Tambah Soal</a>
+    <button type="button" class="btn btn-primary" style="margin-left: 10px;" data-toggle="modal" data-target="#exampleModalCenter">
+                          Tambah Satu Soal
+                        </button>
+	<br/>
+	<br/>
+	<center>
             <table border="5" class="table table-bordered">
                 <tr>
+                      <th class="tengah">No</th>
                       <th class="tengah">Soal</th>
-                      <th class="tengah">Grup Soal</th>
+                      <th class="tengah">Gambar</th>
+                      <th class="tengah">A</th>
+                      <th class="tengah">B</th>
+                      <th class="tengah">C</th>
+                      <th class="tengah">D</th>
+                      <th class="tengah">Jawaban</th>
                       <th class="tengah">Aksi</th>
                   </tr>
+                @php $i=1 @endphp
                 @foreach($soal as $row)
                 <tr>
+                    <td class="tengah">{{ $i++ }}</td>
                     <td class="tengah">{{ $row->soal }}</td>
-                    <td class="tengah">{{ $row->nama_grup_soal }}</td>
+                    <td class="tengah">{{ $row->gambar }}</td>
+                    <td class="tengah">{{ $row->a }}</td>
+                    <td class="tengah">{{ $row->b }}</td>
+                    <td class="tengah">{{ $row->c }}</td>
+                    <td class="tengah">{{ $row->d }}</td>
+                    <td class="tengah">{{ $row->jawaban }}</td>
                     <td class="tengah">
-                        <a href="/soal/edit/{{ $row->id_soal }}"><i class="fa-solid fa-pencil" style="margin-right: 15px;" data-toggle="modal" data-target="#exampleModalEdit"></i></a>
+                        <a href="/soal/edit/{{ $row->id_soal }}"><i class="fa-solid fa-pencil" style="margin-right: 15px;"></i></a>
                         <b>|</b>
                         <a href="/soal/delete/{{ $row->id_soal }}" onclick="return confirm('Are you sure you want to delete?');"><i class="fa-solid fa-trash" style="color: red; margin-left: 15px;"></i></a>
                     </td>
@@ -59,14 +48,10 @@
                 @endforeach
             </table>
         </center>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -77,17 +62,10 @@
         </div>
         <div class="modal-body">
             <table class="table table-hover">
-                <form action="/soal/tambah_data" method="post">
+                <form action="/grup_soal/tambah_data_soal" method="post">
                     {{ csrf_field() }}
                     <tr>
-                        <td>Grup Soal</td>
-                        <td>:</td>
-                        <td><select name="grup_soal" id="" class="form-control">
-                          <option value="">- Pilih -</option>
-                          @foreach($soal as $row)
-                          <option value="{{ $row->id_grup_soal }}">{{ $row->nama_grup_soal }}</option>
-                          @endforeach
-                        </select></td>
+                        <td><input type="hidden" name="id_grup_soal" required="required" class="form-control" value="{{ $row->id_grup_soal }}" readonly></td>
                     </tr>
                     <tr>
                         <td>Soal</td>
@@ -97,7 +75,7 @@
                     <tr>
                         <td>Gambar</td>
                         <td>:</td>
-                        <td><input type="text" name="gambar" required="required" class="form-control"></td>
+                        <td><input type="text" name="gambar" class="form-control"></td>
                     </tr>
                     <tr>
                         <td>A</td>
@@ -135,7 +113,5 @@
         </div>
     </div>
     </div>
-
-
-    <!-- Footer -->
-    @includeIf('layouts.footer')
+   <!-- Footer -->
+  @includeIf('layouts.footer')

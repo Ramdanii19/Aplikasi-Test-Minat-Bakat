@@ -1,5 +1,6 @@
   <!-- Navbar -->
   @includeIf('layouts.header')
+  <title>User Siswa Edit</title>
 
   <!-- Main Sidebar Container -->
   @includeIf('layouts.sidebar')
@@ -34,8 +35,12 @@
             <tr>
                 <td>Level</td>
                 <td>:</td>
-                <td><input type="text" name="level" required="required" value="{{ $row->level }}" class="form-control"></input></td>
+                <td><select  name="level" id="" class="form-control">
+                    <option>user</option>
+                    <option>admin</option>
+                </select></td>
             </tr>
+            <tr>
 				<td><input type="submit" value="Simpan Data" class="btn btn-success"></td>
 			</tr>
 		</form>

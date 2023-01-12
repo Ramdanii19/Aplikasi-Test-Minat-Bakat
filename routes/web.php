@@ -30,6 +30,9 @@ Route::get('/logout', function() {
 
 Route::get('/admin/profile','AdminController@admin_profile');
 
+Route::get('/siswa', 'SiswaController@index');
+Route::get('/siswa/export_excel', 'SiswaController@export_excel');
+Route::post('/siswa/import_excel', 'SiswaController@import_excel');
 
 
 Route::group(['middleware' => 'admin'], function () {
@@ -39,7 +42,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/admin/edit_data','AdminController@edit_data_admin');
     Route::get('/admin/delete/{id}','AdminController@delete_admin');
     
-    Route::get('/siswa','SiswaController@siswa');
+    //Route::get('/siswa','SiswaController@siswa');
     Route::post('/siswa/tambah_data','SiswaController@tambah_data_siswa');
     Route::get('/siswa/edit/{id}','SiswaController@edit_siswa');
     Route::post('/siswa/edit_data','SiswaController@edit_data_siswa');
@@ -57,6 +60,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/grup_soal/edit/{id}','GrupsoalController@edit_grupsoal');
     Route::post('/grup_soal/edit_data','GrupsoalController@edit_data_grupsoal');
     Route::get('/grup_soal/delete/{id}','GrupsoalController@delete_grupsoal');
+    Route::get('/grup_soal/tambah_soal/{id}','GrupsoalController@tambah_soal');
+    Route::post('/grup_soal/tambah_data_soal','GrupsoalController@tambah_data_soal');
+    Route::post('/grup_soal/edit_data_soal','GrupsoalController@edit_data_soal');
+    Route::get('/grup_soal/delete_data_soal/{id}','GrupsoalController@delete_data_soal');
 });
 
 Route::group(['middleware' => 'user'], function () {

@@ -1,5 +1,6 @@
   <!-- Navbar -->
   @includeIf('layouts.header')
+  <title>User Admin</title>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -16,8 +17,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
-              <li class="breadcrumb-item active">Informasi admin</li>
+              <li class="breadcrumb-item"><a href="/home">User</a></li>
+              <li class="breadcrumb-item active">Data Admin</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -107,6 +108,13 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                    </tr>
+                    <tr>
+                        <td>Level</td>
+                        <td>:</td>
+                        <td><select  name="level" id="" class="form-control">
+                          <option>admin</option>
+                        </select></td>
                     </tr>
                 </table>
             </div>

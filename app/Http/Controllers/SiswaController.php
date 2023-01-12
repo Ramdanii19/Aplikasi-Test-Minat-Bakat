@@ -1,71 +1,55 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
-
+ 
 use Illuminate\Http\Request;
-
+ 
+use App\Siswa;
+ 
+use Session;
+ 
+use App\Exports\SiswaExport;
+use App\Imports\SiswaImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+ 
 class SiswaController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-   //Siswa
-   public function siswa ()
-   {
-       $users = DB::table('users')
-               ->where('level', '=', 'user')
-               ->get();
-
-       //$admin = DB::table('admin')->get();
-       return view('siswa.siswa',['users' => $users]);
-   }
-
-   public function tambah_data_siswa(Request $request)
-    {
-        DB::table('users')->insert([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
-        return redirect('/siswa');
-    
-    }
-
-   public function edit_siswa($id)
-   {
-        $siswa = DB::table('users')->where('id',$id)->get();
-        return view('siswa.siswa_edit',['siswa' => $siswa]);
-   }
-
-   public function edit_data_siswa(Request $request)
-   {
-    DB::table('users')->where('id',$request->id)->update([
-        'name' => $request->username,
-        'email' => $request->email,
-        // 'password' => $request->password,
-        'level' => $request->level,
-    ]);
-    // alihkan halaman ke halaman pegawai
-    return redirect('/siswa');
-   }
-
-   public function delete_siswa($id)
-   {
-       DB::table('users')->where('id',$id)->delete();
-       return redirect('/siswa');
-   }
-
-   public function ujian ()
-   {
-    return view('siswa.ujian');
-   }
-
-   public function hasil_ujian ()
-   {
-    return view('siswa.hasil_ujian');
-   }
+	public function index()
+	{
+		$siswa = DB::table('siswa')->get();
+		return view('siswa',['siswa'=>$siswa]);
+	}
+ 
+	public function export_excel()
+	{
+		return Excel::download(new SiswaExport, 'siswa.xlsx');
+	}
+ 
+	public function import_excel(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_siswa',$nama_file);
+ 
+		// import data
+		Excel::import(new SiswaImport, public_path('/file_siswa/'.$nama_file));
+ 
+		// notifikasi dengan session
+		Session::flash('sukses','Data Siswa Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		return redirect('/siswa');
+	}
 }

@@ -1,5 +1,6 @@
   <!-- Navbar -->
   @includeIf('layouts.header')
+  <title>Soal Grup Soal Edit</title>
 
   <!-- Main Sidebar Container -->
   @includeIf('layouts.sidebar')

@@ -48,7 +48,7 @@ class SoalController extends Controller
    public function edit_data_soal(Request $request)
    {
     DB::table('soal')->where('id_soal',$request->id_soal)->update([
-        'id_grup_soal' => $request->grup_soal,
+        'id_grup_soal' => $request->id_grup_soal,
         'soal' => $request->soal,
         'gambar' => $request->gambar,
         'a' => $request->a,
@@ -58,12 +58,12 @@ class SoalController extends Controller
         'jawaban' => $request->jawaban,
     ]);
     // alihkan halaman ke halaman pegawai
-    return redirect('/soal');
+    return redirect('/grup_soal');
    }
 
    public function delete_soal($id)
    {
        DB::table('soal')->where('id_soal',$id)->delete();
-       return redirect('/soal');
+       return redirect('/grup_soal');
    }
 }

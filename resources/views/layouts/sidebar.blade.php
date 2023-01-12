@@ -80,12 +80,12 @@
                   <p>Grup Soal</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="/soal" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Soal</p>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
 

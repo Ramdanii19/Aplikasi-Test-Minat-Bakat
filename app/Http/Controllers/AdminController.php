@@ -31,6 +31,7 @@ class AdminController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
+            'level' => $request->level,
         ]);
         return redirect('/admin');
     

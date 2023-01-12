@@ -1,5 +1,6 @@
   <!-- Navbar -->
   @includeIf('layouts.header')
+  <title>Soal Grup Soal</title>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -16,8 +17,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/home">Beranda</a></li>
-              <li class="breadcrumb-item active">Informasi siswa</li>
+              <li class="breadcrumb-item"><a href="/home">Soal</a></li>
+              <li class="breadcrumb-item active">Grup Soal</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -48,9 +49,11 @@
                 <tr>
                     <td class="tengah">{{ $row->nama_grup_soal }}</td>
                     <td class="tengah">
-                        <a href="/grup_soal/edit/{{ $row->id_grup_soal }}"><i class="fa-solid fa-pencil" style="margin-right: 15px;" data-toggle="modal" data-target="#exampleModalEdit"></i></a>
+                        <a href="/grup_soal/tambah_soal/{{ $row->id_grup_soal }}" class="btn btn-primary"  style="margin-right: 15px; margin-left: 15px;">Tambah Soal</a>
                         <b>|</b>
-                        <a href="/grup_soal/delete/{{ $row->id_grup_soal }}" onclick="return confirm('Are you sure you want to delete?');"><i class="fa-solid fa-trash" style="color: red; margin-left: 15px;"></i></a>
+                        <a href="/grup_soal/edit/{{ $row->id_grup_soal }}"><i class="fa-solid fa-pencil" style="margin-right: 15px; margin-left: 15px;" data-toggle="modal" data-target="#exampleModalEdit"></i></a>
+                        <b>|</b>
+                        <a href="/grup_soal/delete/{{ $row->id_grup_soal }}" onclick="return confirm('Are you sure you want to delete?');"><i class="fa-solid fa-trash" style="color: red; margin-left: 15px; margin-left: 15px;"></i></a>
                     </td>
                 </tr>
                 @endforeach

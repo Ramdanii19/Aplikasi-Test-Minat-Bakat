@@ -1,5 +1,6 @@
   <!-- Navbar -->
   @includeIf('layouts.header')
+  <title>User Admin Edit</title>e>
 
   <!-- Main Sidebar Container -->
   @includeIf('layouts.sidebar')
@@ -33,7 +34,10 @@
             <tr>
                 <td>Level</td>
                 <td>:</td>
-                <td><input type="text" name="level" required="required" value="" class="form-control"></input></td>
+                <td><select  name="level" id="" class="form-control">
+                    <option>admin</option>
+                    <option>user</option>
+                </select></td>
             </tr>
 				<td><input type="submit" value="Simpan Data" class="btn btn-success"></td>
 			</tr>

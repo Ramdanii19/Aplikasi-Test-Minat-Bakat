@@ -1,5 +1,6 @@
   <!-- Navbar -->
   @includeIf('layouts.header')
+  <title>Soal Edit</title>
 
   <!-- Main Sidebar Container -->
   @includeIf('layouts.sidebar')
@@ -16,17 +17,9 @@
 		<form action="/soal/edit_data" method="post">
 			{{ csrf_field() }}
 			<input type="hidden" name="id_soal" value="{{ $row->id_soal }}">
-      <tr>
-                        <td>Grup Soal</td>
-                        <td>:</td>
-                        <td><select name="grup_soal" id="" class="form-control">
-                          <option value="">- Pilih -</option>
-                          @foreach($soal as $row)
-                          <option value="{{ $row->id_grup_soal }}">{{ $row->nama_grup_soal }}</option>
-                          @endforeach
-                        </select></td>
-                    </tr>
             <tr>
+                <td><input type="hidden" name="id_grup_soal" required="required" class="form-control" value="{{ $row->id_grup_soal }}" readonly></td>
+            </tr>
                 <td>Soal</td>
                 <td>:</td>
                 <td><input type="text" name="soal" required="required" value="{{ $row->soal }}" class="form-control"></td>

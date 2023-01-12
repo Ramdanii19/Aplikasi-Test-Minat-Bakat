@@ -1,5 +1,6 @@
   <!-- Navbar -->
   @includeIf('layouts.header')
+  <title>Dashboard</title>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
